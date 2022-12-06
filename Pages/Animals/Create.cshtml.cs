@@ -11,16 +11,16 @@ namespace Chance.Pages.Animals
 {
     public class CreateModel : PageModel
     {
-        private readonly ShelterContext _context;
+        private readonly Final.Models.ShelterDbContext _context;
 
-        public CreateModel(ShelterContext context)
+        public CreateModel(Final.Models.ShelterDbContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["ShelterId"] = new SelectList(_context.Set<Shelter>(), "ShelterId", "ShelterId");
+        ViewData["ShelterId"] = new SelectList(_context.Shelters, "ShelterId", "ShelterId");
             return Page();
         }
 
@@ -31,12 +31,12 @@ namespace Chance.Pages.Animals
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Animal == null || Animal == null)
+          if (!ModelState.IsValid || _context.Animals == null || Animal == null)
             {
                 return Page();
             }
 
-            _context.Animal.Add(Animal);
+            _context.Animals.Add(Animal);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

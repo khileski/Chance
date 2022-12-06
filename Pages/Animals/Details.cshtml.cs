@@ -11,9 +11,9 @@ namespace Chance.Pages.Animals
 {
     public class DetailsModel : PageModel
     {
-        private readonly ShelterContext _context;
+        private readonly Final.Models.ShelterDbContext _context;
 
-        public DetailsModel(ShelterContext context)
+        public DetailsModel(Final.Models.ShelterDbContext context)
         {
             _context = context;
         }
@@ -22,12 +22,12 @@ namespace Chance.Pages.Animals
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Animal == null)
+            if (id == null || _context.Animals == null)
             {
                 return NotFound();
             }
 
-            var animal = await _context.Animal.FirstOrDefaultAsync(m => m.AnimalId == id);
+            var animal = await _context.Animals.FirstOrDefaultAsync(m => m.AnimalId == id);
             if (animal == null)
             {
                 return NotFound();

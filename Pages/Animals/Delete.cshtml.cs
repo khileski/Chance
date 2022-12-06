@@ -11,9 +11,9 @@ namespace Chance.Pages.Animals
 {
     public class DeleteModel : PageModel
     {
-        private readonly ShelterContext _context;
+        private readonly Final.Models.ShelterDbContext _context;
 
-        public DeleteModel(ShelterContext context)
+        public DeleteModel(Final.Models.ShelterDbContext context)
         {
             _context = context;
         }
@@ -23,12 +23,12 @@ namespace Chance.Pages.Animals
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Animal == null)
+            if (id == null || _context.Animals == null)
             {
                 return NotFound();
             }
 
-            var animal = await _context.Animal.FirstOrDefaultAsync(m => m.AnimalId == id);
+            var animal = await _context.Animals.FirstOrDefaultAsync(m => m.AnimalId == id);
 
             if (animal == null)
             {
@@ -43,16 +43,16 @@ namespace Chance.Pages.Animals
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Animal == null)
+            if (id == null || _context.Animals == null)
             {
                 return NotFound();
             }
-            var animal = await _context.Animal.FindAsync(id);
+            var animal = await _context.Animals.FindAsync(id);
 
             if (animal != null)
             {
                 Animal = animal;
-                _context.Animal.Remove(Animal);
+                _context.Animals.Remove(Animal);
                 await _context.SaveChangesAsync();
             }
 

@@ -12,9 +12,9 @@ namespace Chance.Pages.Animals
 {
     public class EditModel : PageModel
     {
-        private readonly ShelterContext _context;
+        private readonly Final.Models.ShelterDbContext _context;
 
-        public EditModel(ShelterContext context)
+        public EditModel(Final.Models.ShelterDbContext context)
         {
             _context = context;
         }
@@ -24,18 +24,18 @@ namespace Chance.Pages.Animals
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Animal == null)
+            if (id == null || _context.Animals == null)
             {
                 return NotFound();
             }
 
-            var animal =  await _context.Animal.FirstOrDefaultAsync(m => m.AnimalId == id);
+            var animal =  await _context.Animals.FirstOrDefaultAsync(m => m.AnimalId == id);
             if (animal == null)
             {
                 return NotFound();
             }
             Animal = animal;
-           ViewData["ShelterId"] = new SelectList(_context.Set<Shelter>(), "ShelterId", "ShelterId");
+           ViewData["ShelterId"] = new SelectList(_context.Shelters, "ShelterId", "ShelterId");
             return Page();
         }
 
@@ -71,7 +71,7 @@ namespace Chance.Pages.Animals
 
         private bool AnimalExists(int id)
         {
-          return (_context.Animal?.Any(e => e.AnimalId == id)).GetValueOrDefault();
+          return (_context.Animals?.Any(e => e.AnimalId == id)).GetValueOrDefault();
         }
     }
 }

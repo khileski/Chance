@@ -11,9 +11,9 @@ namespace Chance.Pages.Animals
 {
     public class IndexModel : PageModel
     {
-        private readonly ShelterContext _context;
+        private readonly Final.Models.ShelterDbContext _context;
 
-        public IndexModel(ShelterContext context)
+        public IndexModel(Final.Models.ShelterDbContext context)
         {
             _context = context;
         }
@@ -22,9 +22,9 @@ namespace Chance.Pages.Animals
 
         public async Task OnGetAsync()
         {
-            if (_context.Animal != null)
+            if (_context.Animals != null)
             {
-                Animal = await _context.Animal
+                Animal = await _context.Animals
                 .Include(a => a.Shelter).ToListAsync();
             }
         }

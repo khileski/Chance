@@ -6,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<ShelterContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("ShelterContext") ?? throw new InvalidOperationException("Connection string 'ShelterContext' not found.")));
+
 builder.Services.AddDbContext<ShelterDbContext>(options=>options.UseSqlite(builder.Configuration.GetConnectionString("ShelterContext")));
 
 var app = builder.Build();
