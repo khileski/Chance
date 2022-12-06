@@ -4,3 +4,22 @@
 @{
     ViewData["Title"] = "Shelters";
 }
+<!--Creating a form for user to select the shelter they want to look at the animals-->
+<h1>Shelters</h1>
+<hr/>
+<h3>Please select which shelter you would like to look for animals at!</h3>
+<div class="col-md-4">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Shelter.ShelterId"></label>
+                <select asp-for="Shelter.ShelterId" asp-items="Model.SheltersDrop" class="form-control">
+                    <option value="">--Select Shelter to view animals--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>

@@ -9,5 +9,7 @@ namespace Final.Models
 
         }
         public DbSet<Shelter>Shelters {get;set;} = default!;
+        public DbSet<Animal>Animals {get;set;} = default!;
+        
     }
 }

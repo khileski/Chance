@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Final.Models;
 
-namespace Final.Pages;
+namespace Chance.Pages;
 
 public class IndexModel : PageModel
 {
