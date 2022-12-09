@@ -24,13 +24,13 @@ public class ShelterModel : PageModel
     public void OnGet()
     {
         Shelters = _context.Shelters.ToList();
-        SheltersDrop = new SelectList(Shelters, "Name", "Address", "Town");
+        SheltersDrop = new SelectList(Shelters, "ShelterId", "Name");
     }
 
     public void OnPost()
     {
         Shelter = _context.Shelters.Find(Shelter.ShelterId)!;
         Shelters = _context.Shelters.ToList();
-        SheltersDrop = new SelectList(Shelters, "Name", "Address", "Town");
+        SheltersDrop = new SelectList(Shelters, "ShelterId", "Name", "Address", "Town");
     }
 }

@@ -9,12 +9,12 @@
 <hr/>
 <h3>Please select which shelter you would like to look for animals at!</h3>
 <div class="col-md-4">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form method="post">
             <div class="form-group">
-                <label asp-for="Shelter.ShelterId"></label>
+                <label asp-for="Shelter.Name"></label>
                 <select asp-for="Shelter.ShelterId" asp-items="Model.SheltersDrop" class="form-control">
-                    <option value="">--Select Shelter to view animals--</option>
+                    <option value="">--Shelter options--</option>
                 </select>
             </div>
             <div class="form-group">
@@ -23,3 +23,25 @@
         </form>
     </div>
 </div>
+<hr />
+
+@if (Model.Shelter !=null)
+{
+    <p>You selected @Model.Shelter.Name located at @Model.Shelter.Address in @Model.Shelter.Town</p>
+    <h5>Here is a list of all animals located at this location:</h5>
+    @foreach(var a in Model.Shelter.Animals)
+    {
+        <dt class="col-mid-3">
+            @Html.DisplayFor(model => a.AnimalName)
+        </dt>
+        <dt class="col-mid-3">
+            @Html.DisplayFor(model => a.Description)
+        </dt>
+        <dt class="col-mid-3">
+            @Html.DisplayFor(model => a.Type)
+        </dt>
+        <dt class="col-mid-3">
+            @Html.DisplayFor(model => a.Weight)
+        </dt>
+    }
+}

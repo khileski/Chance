@@ -6,10 +6,19 @@
 }
 
 <h1>Index</h1>
-
+<h5>Shelter numbers are a followed:</h5>
+<p>1: Fritch Animal Control</p>
+<p>2: Borger Animal Control</p>
+<p>3: City of Stinnett</p>
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add new Animal</a>
 </p>
+<form>
+    <p>
+        Type of animal (Cat or Dog): <input type="text" asp-for="SearchString"/>
+        <input type="submit" value="Filter"/>
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -58,3 +67,26 @@
 }
     </tbody>
 </table>
+<hr />
+@{
+    var prevDisabled="";
+    if (Model.PageNum ==1)
+    {
+        prevDisabled = "disabled";
+    }
+    var nextDisabled="";
+    if (Model.PageNum == 3)
+    {
+        nextDisabled = "disabled";
+    }
+}
+<nav aria-label="...">
+  <ul class="pagination @prevDisabled">
+    <li class="page-item">
+      <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a>
+    </li>
+    <li class="page-item @nextDisabled">
+      <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" >Next</a>
+    </li>
+  </ul>
+</nav>
